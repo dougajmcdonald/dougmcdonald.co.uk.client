@@ -39,6 +39,7 @@ build:
         npm build
 
     - script:
+        name: env vars
         code: |
             env
 
