@@ -46,7 +46,7 @@ build:
     # deploy to azure
     - wercker-labs/azure-ftp-deploy:
         cwd: dist/
-        publish-url: ftp://waws-prod-am2-001.ftp.azurewebsites.windows.net
+        publish-url: ftp://waws-prod-am2-001.ftp.azurewebsites.windows.net/site/wwwroot
         username: dougmcdonald\\\$dougmcdonald
         password: $PASSWORD
 
