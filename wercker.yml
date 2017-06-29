@@ -48,7 +48,7 @@ build:
         cwd: dist/
         publish-url: ftp://waws-prod-am2-001.ftp.azurewebsites.windows.net/site/wwwroot
         username: dougmcdonald\\\$dougmcdonald
-        password: $PASSWORD
+        password: gAwXcLMWrpQl7jv3TJ10mbxT0Eg38RYf3ckzsouLulfbA8pvZP909BFM5vuh
 
     # A custom script step, name value is used in the UI
     # and the code value contains the command that get executed
