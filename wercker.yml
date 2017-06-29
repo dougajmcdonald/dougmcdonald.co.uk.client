@@ -38,6 +38,10 @@ build:
       code: |
         npm build
 
+    - script:
+        code: |
+            env
+
     # deploy to azure
     - wercker-labs/azure-ftp-deploy:
         cwd: dist/
