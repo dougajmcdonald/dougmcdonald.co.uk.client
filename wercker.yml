@@ -30,6 +30,7 @@ build:
     - script:
       name: nsp test
       code: |
+        npm install nsp -g
         nsp check
 
     - script:
