@@ -57,9 +57,6 @@ typings/
 # dotenv environment variables file
 .env
 
-# Vue build Output
-dist/
-
 # test outputs
 test/e2e/reports
 
