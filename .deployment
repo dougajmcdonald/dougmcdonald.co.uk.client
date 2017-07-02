@@ -1,2 +1,2 @@
 [config]
-command = xcopy %DEPLOYMENT_SOURCE% %DEPLOYMENT_TARGET% /sy && cd %DEPLOYMENT_TARGET% && npm build && npm start
+command = npm build && xcopy %DEPLOYMENT_SOURCE% %DEPLOYMENT_TARGET% /sy && cd %DEPLOYMENT_TARGET% && npm start
