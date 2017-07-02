@@ -107,6 +107,10 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 
 call :ExecuteCmd !NPM_CMD! build
 
+call :ExecuteCmd xcopy %DEPLOYMENT_SOURCE% %DEPLOYMENT_TARGET% /sy
+
+call :ExecuteCmd !NPM_CMD! start
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 goto end
 
