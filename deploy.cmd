@@ -105,6 +105,8 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   popd
 )
 
+call :ExecuteCmd !NPM_CMD! install
+
 call :ExecuteCmd !NPM_CMD! build
 
 call :ExecuteCmd xcopy %DEPLOYMENT_SOURCE% %DEPLOYMENT_TARGET% /sy
