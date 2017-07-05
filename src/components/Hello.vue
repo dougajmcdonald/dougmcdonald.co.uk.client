@@ -35,7 +35,7 @@
     </section>
     <section class="footer">
       <div class="row">
-        <p>Copyright goes here</p>
+        <p>Copyright </p>
       </div>
     </section>
   </div>
