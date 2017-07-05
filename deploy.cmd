@@ -97,9 +97,6 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 :: 2. Select node version
 call :SelectNodeVersion
 
-:: 2. Select node version
-call :SelectNodeVersion
-
 :: 2. Install npm devDependancy packages with explicit flag --only=dev at DEPLOYMENT_SOURCE instead of DEPLOYMENT_TARGET
 echo =======  Installing npm  devDependancy packages: Starting at %TIME% =======
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
@@ -117,7 +114,7 @@ IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   pushd "%DEPLOYMENT_SOURCE%"
   echo "Building web site using NPM"
   ::call :ExecuteCmd !NPM_CMD! build
-  call :ExecuteCmd !NPM_CMD! build
+  call :ExecuteCmd !NPM_CMD! run build
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
