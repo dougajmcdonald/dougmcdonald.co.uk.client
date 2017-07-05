@@ -85,8 +85,6 @@ goto :EOF
 :: Deployment
 :: ----------
 
-call :ExecuteCmd npm run buil
-
 :Deployment
 echo Handling node.js deployment.
 
