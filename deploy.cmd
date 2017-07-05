@@ -88,9 +88,9 @@ goto :EOF
 :Deployment
 echo Handling node.js deployment.
 
-:: 1. KuduSync
+:: 1. KuduSync - copy everything to the deployment source?
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%\dist
+  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%
   " -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
   IF !ERRORLEVEL! NEQ 0 goto error
 )
@@ -98,22 +98,47 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 :: 2. Select node version
 call :SelectNodeVersion
 
-:: 3. Install npm packages
+:: 2. Install npm devDependancy packages with explicit flag --only=dev at DEPLOYMENT_SOURCE instead of DEPLOYMENT_TARGET
+echo =======  Installing npm  devDependancy packages: Starting at %TIME% =======
+IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
+  pushd "%DEPLOYMENT_SOURCE%"
+  call :ExecuteCmd !NPM_CMD! install --only=dev
+  IF !ERRORLEVEL! NEQ 0 goto error
+  popd
+)
+echo =======  Installing npm dev packages: Finished at %TIME% =======
+
+
+:: 3 Execute Gulp tasks at DEPLOYMENT_SOURCE instead of DEPLOYMENT_TARGET
+echo =======  Executing npm task build: Starting at %TIME% =======
+IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
+  pushd "%DEPLOYMENT_SOURCE%"
+  echo "Building web site using NPM"
+  ::call :ExecuteCmd !NPM_CMD! build
+  call :ExecuteCmd !NPM_CMD! build
+  IF !ERRORLEVEL! NEQ 0 goto error
+  popd
+)
+echo =======  Executing npm task build: Finished at %TIME% =======
+
+:: 4. Do KuduSync BEFORE INSTALLING PRODUCTION DEPENDANCIES
+echo ======= Kudu Syncing: Starting at %TIME% =======
+IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
+  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.vscode;node_modules;src;typings;.bowerrc;.deployment;.gitignore;bower.json;deploy.cmd;gulpfile.js;tsconfig.json;tsd.json;.hg;.deployment;deploy.cmd;*.xml;*.yml"
+  IF !ERRORLEVEL! NEQ 0 goto error
+)
+echo ======= Kudu Syncing: Finished at %TIME% =======
+
+
+:: 6. Install npm packages at DEPLOYMENT_TARGET
+echo =======  Installing npm packages: Starting at %TIME% =======
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install --production
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
-
-echo Building...
-
-IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
-  pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd !NPM_CMD! run build
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
-)
+echo =======  Installing npm packages: Finished at %TIME% =======
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 goto end
