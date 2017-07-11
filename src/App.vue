@@ -13,12 +13,15 @@ export default {
 </script>
 
 <style>
+
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 body {
   padding: 0px;
   font-size: 16px;
 }
 
-.row {
+#app .row {
   position: relative;
   max-width: 1024px;
   margin: auto;
