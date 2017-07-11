@@ -11,15 +11,15 @@ export default new Router({
       name: 'Hello',
       component: Hello
     },
-    {
-      path: '/read',
-      name: 'read',
-      component: Read
-    },
-    {
-      path: '/contact',
-      name: 'Contact',
-      component: Contact
-    }
+    // {
+    //   path: '/read',
+    //   name: 'read',
+    //   component: Read
+    // },
+    // {
+    //   path: '/contact',
+    //   name: 'Contact',
+    //   component: Contact
+    // }
   ]
 })
