@@ -12,174 +12,41 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 
-@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+  @import 'components/sass/variables.scss';
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto|Roboto+Slab');
 
-body {
-  padding: 0px;
-  font-size: 16px;
-}
-
-#app .row {
-  position: relative;
-  max-width: 1024px;
-  margin: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.cf:before,
-.cf:after {
-  content: " ";
-  /* 1 */
-  display: table;
-  /* 2 */
-}
-
-.cf:after {
-  clear: both;
-}
-
-.header-banner {
-  position: relative;
-  padding-top: 0px;
-}
-.header-banner .stripe-grid {
-  position: absolute;
-  top: 0px;
-  left: 0%;
-  width: 100%;
-  height: 100%;
-  transform: skewY(-11deg);
-}
-.header-banner .stripe-grid:after {
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  background-color: #fff;
-  bottom: -1px;
-  content: '';
-  left: 0%;
-}
-.header-banner .stripe-grid .stripe {
-  position: absolute;
-  height: 22%;
-  width: 100%;
-}
-.header-banner .stripe-grid .stripe.zero {
-  top: -50%;
-  height: 50%;
-}
-.header-banner .stripe-grid .stripe.first {
-  width: 75%;
-  left: 0%;
-}
-.header-banner .stripe-grid .stripe.second {
-  right: 0%;
-  width: 25%;
-  top: 25%;
-}
-.header-banner .stripe-grid .stripe.third {
-  bottom: 0%;
-  width: 50%;
-  right: 0px;
-}
-.header-banner .stripe-grid .stripe.fourth {
-  bottom: 0%;
-  width: 50%;
-  left: 0%;
-}
-.header-banner .stripe-grid.blue {
-  background: #00c5d7;
-}
-.header-banner .stripe-grid.blue .zero {
-  background-color: #00c5d7;
-}
-.header-banner .stripe-grid.blue .first {
-  background-color: #00c5d7;
-  background: linear-gradient(90deg, #1ADFF1, #00c5d7);
-}
-.header-banner .stripe-grid.blue .second {
-  background-color: #00c5d7;
-  background: linear-gradient(90deg, #00c5d7, #7aecf7);
-}
-.header-banner .stripe-grid.blue .third {
-  background-color: #00c5d7;
-  background: linear-gradient(90deg, #00c5d7, #009dab);
-}
-.header-banner .stripe-grid.blue .fourth {
-  background-color: #eeeeee;
-  background: linear-gradient(90deg, #eeeeee, #f6f9fc);
-}
-.header-banner .content-wrap {
-  position: relative;
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-.header-banner .content-wrap .content {
-  float: left;
-  width: 65%;
-}
-.header-banner .content-wrap .content .hero-title {
-  font-size: 5.8rem;
-  margin-bottom: 1.9rem;
-  color: #fff;
-}
-.header-banner .content-wrap .content .hero-subtitle {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #eee;
-}
-.header-banner .content-wrap .content .button-group {
-  margin-bottom: 10px;
-}
-.header-banner .content-wrap .content .button {
-  float: left;
-  margin-right: 15px;
-  padding: 10px 17px;
-  background: #2c3e50;
-  color: #fff;
-  transition: all 220ms ease-out;
-}
-.header-banner .content-wrap .content .button:focus {
-  background: #34495e;
-}
-.header-banner .content-wrap .image {
-  float: left;
-  width: 35%;
-  padding: 0px 10px;
-}
-.header-banner .content-wrap .image img {
-  max-width: 100%;
-  height: auto;
-}
-
-.main-content {
-  padding-bottom: 60px;
-}
-.main-content h2 {
-  margin-bottom: 30px;
-}
-
-.footer {
-  background-color: #2c3e50;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  color: #fff;
-}
-.footer p {
-  margin-bottom: 0px;
-}
-
-@media screen and (max-width: 768px) {
-  .header-banner .content-wrap .image {
-    display: none;
-    border: solid 1px red;
+  body {
+    font-family: 'Roboto', sans-serif;
   }
-  .header-banner .content-wrap .content {
-    width: 100%;
+
+  h1 {
+    font-family: 'Roboto slab';
+    color: #fff;
+    font-size: 2em;
+    margin: 0;
   }
-}
+
+  h2 {
+    color: $grey-blue;
+    font-weight: normal;
+  }
+
+  button {
+    border: 2px solid #fff;
+    color: $grey-blue;
+    padding: 1em 1em;
+    margin-left: 1em;
+    font-size: 0.7em;
+    font-weight: bold;
+    background: transparent;
+    border-radius: 2px;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background: #fff;
+  }
 
 </style>
