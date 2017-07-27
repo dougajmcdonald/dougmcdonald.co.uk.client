@@ -2,9 +2,6 @@
   <div>
     <sidebar></sidebar>
     <blog></blog>
-    <section class="footer">
-        <p>Copyright &copy; 2017</p>
-    </section>
   </div>
 </template>
 
