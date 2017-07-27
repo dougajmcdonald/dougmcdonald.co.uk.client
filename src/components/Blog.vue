@@ -21,7 +21,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'blog',
   data () {
@@ -32,7 +31,7 @@ export default {
     this.fetchPosts()
   },
   methods: {
-    fetchPosts: () => {
+    fetchPosts: function() {
       debugger;
       this.$http.get('https://dougajmcdonald.azurewebsites.net/api/GetBlogPosts?code=y8HLRCA5DfnCkZScKvAoobjqc5cUZF9aSAsiJMAuisoBfTFqutvBSw==')
         .then((response) => {
