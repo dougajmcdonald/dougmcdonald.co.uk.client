@@ -1,5 +1,9 @@
 <template>
   <section class="content">
+    <article v-for="post in posts">
+      <h2>{{post.title}}</h2>
+      <p>{{post.content}}</p>
+    </article>
     <article>
       <h2>Post title 1</h2>
       <p>I'm Doug and this is my personal website with thoughts and experiences on code and shiz. </p>
@@ -21,23 +25,20 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
+
 export default {
   name: 'blog',
-  data () {
-    return {
-    }
-  },
+  computed: mapState({
+    posts: state => state.blog.posts
+  }),
   mounted () {
     this.fetchPosts()
   },
   methods: {
-    fetchPosts: function() {
-      debugger;
-      this.$http.get('https://dougajmcdonald.azurewebsites.net/api/GetBlogPosts?code=y8HLRCA5DfnCkZScKvAoobjqc5cUZF9aSAsiJMAuisoBfTFqutvBSw==')
-        .then((response) => {
-          console.log(response)
-        })
-    }
+    ...mapActions([
+      'fetchPosts'
+    ])
   }
 }
 </script>
