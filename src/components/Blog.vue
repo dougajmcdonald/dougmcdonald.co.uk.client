@@ -2,7 +2,7 @@
   <section class="content">
     <article v-for="post in posts">
       <h2>{{post.title}}</h2>
-      <p>{{post.content}}</p>
+      <p v-html="post.content"></p>
     </article>
     <article>
       <h2>Post title 1</h2>
@@ -26,11 +26,12 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import marked from 'marked'
 
 export default {
   name: 'blog',
   computed: mapState({
-    posts: state => state.blog.posts
+    posts: state => state.blog.posts.map((post) => { return { title: post.title, content: marked(post.content) }})
   }),
   mounted () {
     this.fetchPosts()
