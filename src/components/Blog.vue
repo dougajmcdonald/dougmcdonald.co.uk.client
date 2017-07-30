@@ -32,8 +32,7 @@ export default {
     this.fetchPosts()
   },
   methods: {
-    fetchPosts: () => {
-      debugger;
+    fetchPosts: function () {
       this.$http.get('https://dougajmcdonald.azurewebsites.net/api/GetBlogPosts?code=y8HLRCA5DfnCkZScKvAoobjqc5cUZF9aSAsiJMAuisoBfTFqutvBSw==')
         .then((response) => {
           console.log(response)
